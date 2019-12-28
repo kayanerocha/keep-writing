@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "VerificacaoUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Processo de verificação de usuário</h2>  
+  
+    <div class="danger alert-danger">  
+        <strong>Menssagem: </strong>  @ViewBag.Menssagem Por favor acesse o link para @Html.ActionLink("Entrar", "Autenticacao", "Usuario")  
+    </div> 

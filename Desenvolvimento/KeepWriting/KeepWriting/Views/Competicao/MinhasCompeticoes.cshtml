@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KeepWriting.ViewModels.CompeticaoViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Criar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.InicioInscriListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.FimInscriListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.InicioVotaListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.FimVotaListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PontoExperiencia)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Nome, "Detalhes", new { @id = item.IdCompeticao }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicioInscri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFimInscri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicioVota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFimVota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PontoExperiencia)
+        </td>
+        @if (item.Status == "Desativado")
+        {
+            <td>@Html.LabelFor(modelItem => item.userdetails.StatusValor)</td>
+        }
+            <td>
+                @if (item.Status == "Ativado")
+                {
+                    @Html.ActionLink("Edit", "Editar", new { id = item.IdCompeticao })
+                }
+                @Html.ActionLink("Delete", "Excluir", new { id = item.IdCompeticao })
+            </td>
+    </tr>
+}
+
+</table>

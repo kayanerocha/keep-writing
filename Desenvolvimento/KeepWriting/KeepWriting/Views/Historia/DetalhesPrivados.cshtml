@@ -1,0 +1,128 @@
+﻿@model KeepWriting.Models.Historia
+
+<div>
+    <h4>Historia</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sinopse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sinopse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </dt>
+
+        @if (Model.Classificacao == "Livre" || Model.Classificacao == "Free")
+        {
+            <dd>@KeepWriting.LocalResource.Resource.livre</dd>
+        }
+        else if (Model.Classificacao == "Para maiores de 16 anos" || Model.Classificacao == "For over 16 years")
+        {
+            <dd>@KeepWriting.LocalResource.Resource.dezesseis</dd>
+        }
+        else if (Model.Classificacao == "Para maiores de 18 anos" || Model.Classificacao == "For over 18 years")
+        {
+            <dd>@KeepWriting.LocalResource.Resource.dezoito</dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtdFavoritos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtdFavoritos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtdVisualizacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtdVisualizacoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capa)
+        </dt>
+        @if (Model.Capa != null)
+        {
+            <dd>
+                @{
+                    var base64 = Convert.ToBase64String(Model.Capa);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+            </dd>
+        }
+        else
+        {
+            <dd>
+                <img src='~/Imagens/capaHistoria.png' style="max-width:100px; max-height:100px;" />
+            </dd>
+        }
+        <dt>
+            @KeepWriting.LocalResource.Resource.situacaoListar
+        </dt>
+        @if (Model.Situacao == true)
+        {
+            <dd>@KeepWriting.LocalResource.Resource.publicado</dd>
+        }
+        else
+        {
+            <dd>@KeepWriting.LocalResource.Resource.rascunho</dd>
+        }
+        <dt>
+            @*@Html.DisplayNameFor(model => model.GeneroIngles.Descricao)*@
+            Gênero
+        </dt>
+        @{
+            int culture = Convert.ToInt32(Session["CurrentCulture"].ToString());
+            if (culture == 0)
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.Genero.NomePortugues)
+                </dd>
+            }
+            else
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.Genero.NomeIngles)
+                </dd>
+            }
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idioma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idioma.Descricao)
+        </dd>
+
+        @if (Model.Status == "Desativado")
+        {
+            @KeepWriting.LocalResource.Resource.statusValor
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Minhas histórias", "MinhasHistorias") |
+    @Html.ActionLink("Editar", "Editar", new { id = Model.IdHistoria })
+    @Html.RouteLink("Publicar", "PublicarHistoria", new { idHistoria = Model.IdHistoria, action = "Publicar" }, new { @class = "text-lg" }) @*Não funciona, está carregando a Action errada*@
+    @Html.RouteLink("Retirar", "RetirarHistoria", new { idHistoria = Model.IdHistoria, action = "Retirar" }, new { @class = "text-lg" })
+    @Html.RouteLink("Alterar capa", "AlterarCapa", new { idHistoria = Model.IdHistoria, action = "AlterarCapa" }, new { @class = "text-lg" })
+</p>

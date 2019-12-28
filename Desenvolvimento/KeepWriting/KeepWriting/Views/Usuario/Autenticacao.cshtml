@@ -1,0 +1,52 @@
+﻿@model KeepWriting.ViewModels.Login
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Autenticacao", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="limiter">
+        <div class="container-login100" style="background-color: white;">
+            <div class="wrap-login100">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <span class="login100-form-title p-b-34 p-t-27">@Html.LabelFor(model => model.Entrar, htmlAttributes: new { @class = "login100-form-title p-b-34 p-t-27" })</span>
+
+                <div class="wrap-input100 validate-input">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input100", placeholder = KeepWriting.LocalResource.Resource.email } })
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "input100", placeholder = KeepWriting.LocalResource.Resource.senha } })
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="contact100-form-checkbox">
+                    @Html.EditorFor(model => model.Lembreme, new { htmlAttributes = new { @class = "input-checkbox100", id = "ckb1" } }) @*não está selecionando*@
+                    @Html.LabelFor(model => model.Lembreme, htmlAttributes: new { @class = "label-checkbox100" })
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <input type="submit" value=@KeepWriting.LocalResource.Resource.entrar class="login100-form-btn" />
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    @ViewBag.EmailVerif
+                </div>
+
+                <div class="text-center p-t-20">
+                    <a href="@Url.Action("Cadastro", "Usuario")" class="txt1">@KeepWriting.LocalResource.Resource.irCadastrar</a>
+                </div>
+
+                <div class="text-center p-t-10">
+                    <a href="@Url.Action("RecuperarSenha", "Usuario")" class="txt1">@KeepWriting.LocalResource.Resource.esqueceuSenha</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

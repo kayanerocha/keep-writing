@@ -1,0 +1,72 @@
+﻿@model KeepWriting.Models.Capitulo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Capitulo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conteudo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conteudo)
+        </dd>
+
+        @{
+            var usuarioLogado = (KeepWriting.Models.Usuario)HttpContext.Current.Session["usuario"];
+            if (usuarioLogado != null)
+            {
+                <dt>
+                    @KeepWriting.LocalResource.Resource.situacaoListar
+                </dt>
+                if (Model.Situacao == true)
+                {
+                <dd>@KeepWriting.LocalResource.Resource.publicado</dd>
+                }
+                else
+                {
+                <dd>@KeepWriting.LocalResource.Resource.rascunho</dd>
+                }
+            }
+        }
+
+        @if (@Model.Status == "Desativado")
+        {
+                <dd>@KeepWriting.LocalResource.Resource.statusValor</dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @if (Model.Historia.IdUsuario == usuarioLogado.IdUsuario)
+    {
+        if (Model.Status == "Ativado")
+        {
+            @Html.ActionLink("Editar", "Editar", new { id = Model.IdCapitulo })
+            if (!Model.Situacao)
+            {
+                @Html.RouteLink("Publicar", "PublicarCapitulo", new { idCapitulo = Model.IdCapitulo, action = "Publicar" }, new { @class = "text-lg" }) @*Não funciona, está carregando a Action errada*@
+            }
+            else
+            {
+                @Html.RouteLink("Retirar", "RetirarCapitulo", new { idCapitulo = Model.IdCapitulo, action = "Retirar" }, new { @class = "text-lg" })
+            }
+        }
+        @Html.ActionLink("Meus capítulos", "MeusCapitulos")
+    }
+</p>

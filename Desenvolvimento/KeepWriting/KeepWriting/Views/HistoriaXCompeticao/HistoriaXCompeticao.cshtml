@@ -1,0 +1,30 @@
+﻿@model IEnumerable<KeepWriting.ViewModels.HistoriaXCompeticaoVM>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdHistoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.RouteLink("Escolher", "Inscricao", new { idCompeticao = item.IdCompeticao, idHistoria = item.IdHistoria, action = "InscreverHistoria" }, new { @class = "text-lg" })
+        </td>
+    </tr>
+}
+
+</table>
+
+@ViewBag.MensagemErro

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Área administrativa</h2>
+
+@*@if (Session["IdUsuario"] != null)
+{<text>
+        Welcome @Session["IdUsuario"].ToString() </text>
+}*@
+<h2>Hello, @ViewBag.Nome</h2> 
+
+@if(@ViewBag.Email == "adm@gmail.com")
+{
+    <input type="submit" value="Desabilitar" />
+}

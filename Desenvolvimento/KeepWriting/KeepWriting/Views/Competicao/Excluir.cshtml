@@ -1,0 +1,90 @@
+﻿@model KeepWriting.ViewModels.CompeticaoViewModel
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Competicao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.InicioInscriListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicioInscri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.FimInscriListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFimInscri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.InicioVotaListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicioVota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.FimVotaListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFimVota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PontoExperiencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PontoExperiencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeUsuario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Minhas competições", "MinhasCompeticoes")
+        </div>
+    }
+</div>

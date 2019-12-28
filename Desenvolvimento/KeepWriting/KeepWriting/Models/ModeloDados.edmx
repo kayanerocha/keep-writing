@@ -1,0 +1,1967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KeepWritingBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Capitulo">
+          <Key>
+            <PropertyRef Name="IdCapitulo" />
+          </Key>
+          <Property Name="IdCapitulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Conteudo" Type="text" Nullable="false" />
+          <Property Name="Situacao" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="int" />
+          <Property Name="IdHistoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="int" Nullable="false" />
+          <Property Name="Conteudo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="int" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdCapitulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Competicao">
+          <Key>
+            <PropertyRef Name="IdCompeticao" />
+          </Key>
+          <Property Name="IdCompeticao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DataInicioInscri" Type="datetime" Nullable="false" />
+          <Property Name="DataFimInscri" Type="datetime" Nullable="false" />
+          <Property Name="DataInicioVota" Type="datetime" Nullable="false" />
+          <Property Name="DataFimVota" Type="datetime" Nullable="false" />
+          <Property Name="PontoExperiencia" Type="int" Nullable="false" />
+          <Property Name="Vencedora" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="int" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Denuncia">
+          <Key>
+            <PropertyRef Name="IdDenuncia" />
+          </Key>
+          <Property Name="IdDenuncia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Motivo" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Explicacao" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Data" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenunciaCapitulo">
+          <Key>
+            <PropertyRef Name="IdDenunciaCapitulo" />
+          </Key>
+          <Property Name="IdDenunciaCapitulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCapitulo" Type="int" Nullable="false" />
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenunciaComentario">
+          <Key>
+            <PropertyRef Name="IdDenunciaComentario" />
+          </Key>
+          <Property Name="IdDenunciaComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdComentario" Type="int" Nullable="false" />
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenunciaCompeticao">
+          <Key>
+            <PropertyRef Name="IdDenunciaCompeticao" />
+          </Key>
+          <Property Name="IdDenunciaCompeticao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+          <Property Name="IdCompeticao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenunciaEvento">
+          <Key>
+            <PropertyRef Name="IdDenunciaEvento" />
+          </Key>
+          <Property Name="IdDenunciaEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+          <Property Name="IdEvento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenunciaHistoria">
+          <Key>
+            <PropertyRef Name="IdDenunciaHistoria" />
+          </Key>
+          <Property Name="IdDenunciaHistoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHistoria" Type="int" Nullable="false" />
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DenunciaUsuario">
+          <Key>
+            <PropertyRef Name="IdDenunciaUsuario" />
+          </Key>
+          <Property Name="IdDenunciaUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventoLiterario">
+          <Key>
+            <PropertyRef Name="IdEvento" />
+          </Key>
+          <Property Name="IdEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imagem" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Nullable="false" />
+          <Property Name="DataFim" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="int" />
+          <Property Name="Link" Type="varchar" MaxLength="200" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdLocalizacao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Favorito">
+          <Key>
+            <PropertyRef Name="IdFavorito" />
+          </Key>
+          <Property Name="IdFavorito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdHistoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="IdGenero" />
+          </Key>
+          <Property Name="IdGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomePortugues" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="NomeIngles" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Historia">
+          <Key>
+            <PropertyRef Name="IdHistoria" />
+          </Key>
+          <Property Name="IdHistoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Capa" Type="varbinary(max)" />
+          <Property Name="Sinopse" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="Classificacao" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="QtdFavoritos" Type="int" Nullable="false" />
+          <Property Name="Situacao" Type="bit" Nullable="false" />
+          <Property Name="QtdVisualizacoes" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="int" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdIdioma" Type="int" Nullable="false" />
+          <Property Name="IdGenero" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoriaXListaLeitura">
+          <Key>
+            <PropertyRef Name="IdHistoria" />
+            <PropertyRef Name="IdListaLeitura" />
+          </Key>
+          <Property Name="IdHistoria" Type="int" Nullable="false" />
+          <Property Name="IdListaLeitura" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Idioma">
+          <Key>
+            <PropertyRef Name="IdIdioma" />
+          </Key>
+          <Property Name="IdIdioma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inscricao">
+          <Key>
+            <PropertyRef Name="IdCompeticao" />
+            <PropertyRef Name="IdHistoria" />
+          </Key>
+          <Property Name="IdCompeticao" Type="int" Nullable="false" />
+          <Property Name="IdHistoria" Type="int" Nullable="false" />
+          <Property Name="QtdVotos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListaLeitura">
+          <Key>
+            <PropertyRef Name="IdListaLeitura" />
+          </Key>
+          <Property Name="IdListaLeitura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Localizacao">
+          <Key>
+            <PropertyRef Name="IdLocalizacao" />
+          </Key>
+          <Property Name="IdLocalizacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cidade" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Endereco" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Local" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="IdNivel" />
+          </Key>
+          <Property Name="IdNivel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="QtdPontoMinimo" Type="int" Nullable="false" />
+          <Property Name="QtdPontoMaximo" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KeepWritingBD.dbo.PontoExperiencia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PontoExperiencia">
+          <Key>
+            <PropertyRef Name="IdPontoExperiencia" />
+            <PropertyRef Name="Acao" />
+            <PropertyRef Name="QtdPonto" />
+          </Key>
+          <Property Name="IdPontoExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Acao" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="QtdPonto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataNasc" Type="date" Nullable="false" />
+          <Property Name="Foto" Type="varbinary(max)" />
+          <Property Name="Descricao" Type="varchar" MaxLength="1000" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="QtdHistorias" Type="int" />
+          <Property Name="QtdPonto" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="int" />
+          <Property Name="EmailVerificado" Type="bit" />
+          <Property Name="CodigoAtivacao" Type="uniqueidentifier" />
+          <Property Name="Otp" Type="nvarchar" MaxLength="4" />
+          <Property Name="IdNivel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voto">
+          <Key>
+            <PropertyRef Name="IdVoto" />
+          </Key>
+          <Property Name="IdVoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdInscricaoComp" Type="int" Nullable="false" />
+          <Property Name="IdInscricaoHist" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Capitulo_Historia1">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Capitulo" Type="Self.Capitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Capitulo">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comentario_Capitulo1">
+          <End Role="Capitulo" Type="Self.Capitulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capitulo">
+              <PropertyRef Name="IdCapitulo" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="IdCapitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comentario_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Competicao_has_Historia_Competicao1">
+          <End Role="Competicao" Type="Self.Competicao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competicao">
+              <PropertyRef Name="IdCompeticao" />
+            </Principal>
+            <Dependent Role="Inscricao">
+              <PropertyRef Name="IdCompeticao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Competicao_has_Historia_Historia1">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="1" />
+          <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Inscricao">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Competicao_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Competicao" Type="Self.Competicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Competicao">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Denuncia_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Denuncia">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCapitulo_Capitulo1">
+          <End Role="Capitulo" Type="Self.Capitulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaCapitulo" Type="Self.DenunciaCapitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capitulo">
+              <PropertyRef Name="IdCapitulo" />
+            </Principal>
+            <Dependent Role="DenunciaCapitulo">
+              <PropertyRef Name="IdCapitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCapitulo_Comentario1">
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaComentario" Type="Self.DenunciaComentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comentario">
+              <PropertyRef Name="IdComentario" />
+            </Principal>
+            <Dependent Role="DenunciaComentario">
+              <PropertyRef Name="IdComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCapitulo_Denuncia2">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaCapitulo" Type="Self.DenunciaCapitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaCapitulo">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaComentario_Denuncia2">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaComentario" Type="Self.DenunciaComentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaComentario">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCompeticao_Competicao1">
+          <End Role="Competicao" Type="Self.Competicao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaCompeticao" Type="Self.DenunciaCompeticao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competicao">
+              <PropertyRef Name="IdCompeticao" />
+            </Principal>
+            <Dependent Role="DenunciaCompeticao">
+              <PropertyRef Name="IdCompeticao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCompeticao_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaCompeticao" Type="Self.DenunciaCompeticao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaCompeticao">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaEvento_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaEvento" Type="Self.DenunciaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaEvento">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaEvento_EventoLiterario1">
+          <End Role="EventoLiterario" Type="Self.EventoLiterario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaEvento" Type="Self.DenunciaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventoLiterario">
+              <PropertyRef Name="IdEvento" />
+            </Principal>
+            <Dependent Role="DenunciaEvento">
+              <PropertyRef Name="IdEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaHistoria_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaHistoria" Type="Self.DenunciaHistoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaHistoria">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaHistoria_Historia1">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaHistoria" Type="Self.DenunciaHistoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="DenunciaHistoria">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaUsuario_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaUsuario" Type="Self.DenunciaUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaUsuario">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaUsuario_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaUsuario" Type="Self.DenunciaUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="DenunciaUsuario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EventoLiterario_Localizacao1">
+          <End Role="Localizacao" Type="Self.Localizacao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventoLiterario" Type="Self.EventoLiterario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localizacao">
+              <PropertyRef Name="IdLocalizacao" />
+            </Principal>
+            <Dependent Role="EventoLiterario">
+              <PropertyRef Name="IdLocalizacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EventoLiterario_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventoLiterario" Type="Self.EventoLiterario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="EventoLiterario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Favorito_Historia1">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Favorito_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_Genero1">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Historia" Type="Self.Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="IdGenero" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="IdGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_has_ListaLeitura_Historia1">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="1" />
+          <End Role="HistoriaXListaLeitura" Type="Self.HistoriaXListaLeitura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="HistoriaXListaLeitura">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_has_ListaLeitura_ListaLeitura1">
+          <End Role="ListaLeitura" Type="Self.ListaLeitura" Multiplicity="1" />
+          <End Role="HistoriaXListaLeitura" Type="Self.HistoriaXListaLeitura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListaLeitura">
+              <PropertyRef Name="IdListaLeitura" />
+            </Principal>
+            <Dependent Role="HistoriaXListaLeitura">
+              <PropertyRef Name="IdListaLeitura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_Idioma1">
+          <End Role="Idioma" Type="Self.Idioma" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Historia" Type="Self.Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Idioma">
+              <PropertyRef Name="IdIdioma" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="IdIdioma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Historia" Type="Self.Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ListaLeitura_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ListaLeitura" Type="Self.ListaLeitura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="ListaLeitura">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Nivel1">
+          <End Role="Nivel" Type="Self.Nivel" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel">
+              <PropertyRef Name="IdNivel" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdNivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Voto_Inscricao1">
+          <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Voto" Type="Self.Voto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inscricao">
+              <PropertyRef Name="IdCompeticao" />
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Voto">
+              <PropertyRef Name="IdInscricaoComp" />
+              <PropertyRef Name="IdInscricaoHist" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Voto_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Voto" Type="Self.Voto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Voto">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeepWritingBDModelStoreContainer">
+          <EntitySet Name="Capitulo" EntityType="Self.Capitulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Competicao" EntityType="Self.Competicao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Denuncia" EntityType="Self.Denuncia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenunciaCapitulo" EntityType="Self.DenunciaCapitulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenunciaComentario" EntityType="Self.DenunciaComentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenunciaCompeticao" EntityType="Self.DenunciaCompeticao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenunciaEvento" EntityType="Self.DenunciaEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenunciaHistoria" EntityType="Self.DenunciaHistoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DenunciaUsuario" EntityType="Self.DenunciaUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventoLiterario" EntityType="Self.EventoLiterario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorito" EntityType="Self.Favorito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historia" EntityType="Self.Historia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoriaXListaLeitura" EntityType="Self.HistoriaXListaLeitura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Idioma" EntityType="Self.Idioma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inscricao" EntityType="Self.Inscricao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListaLeitura" EntityType="Self.ListaLeitura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localizacao" EntityType="Self.Localizacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nivel" EntityType="Self.Nivel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voto" EntityType="Self.Voto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PontoExperiencia" EntityType="Self.PontoExperiencia" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PontoExperiencia].[IdPontoExperiencia] AS [IdPontoExperiencia], 
+    [PontoExperiencia].[Acao] AS [Acao], 
+    [PontoExperiencia].[QtdPonto] AS [QtdPonto]
+    FROM [dbo].[PontoExperiencia] AS [PontoExperiencia]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_Capitulo_Historia1" Association="Self.fk_Capitulo_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Capitulo" EntitySet="Capitulo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comentario_Capitulo1" Association="Self.fk_Comentario_Capitulo1">
+            <End Role="Capitulo" EntitySet="Capitulo" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comentario_Usuario1" Association="Self.fk_Comentario_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Competicao_has_Historia_Competicao1" Association="Self.fk_Competicao_has_Historia_Competicao1">
+            <End Role="Competicao" EntitySet="Competicao" />
+            <End Role="Inscricao" EntitySet="Inscricao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Competicao_has_Historia_Historia1" Association="Self.fk_Competicao_has_Historia_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Inscricao" EntitySet="Inscricao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Competicao_Usuario" Association="Self.fk_Competicao_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Competicao" EntitySet="Competicao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Denuncia_Usuario1" Association="Self.fk_Denuncia_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Denuncia" EntitySet="Denuncia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCapitulo_Capitulo1" Association="Self.fk_DenunciaCapitulo_Capitulo1">
+            <End Role="Capitulo" EntitySet="Capitulo" />
+            <End Role="DenunciaCapitulo" EntitySet="DenunciaCapitulo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCapitulo_Comentario1" Association="Self.fk_DenunciaCapitulo_Comentario1">
+            <End Role="Comentario" EntitySet="Comentario" />
+            <End Role="DenunciaComentario" EntitySet="DenunciaComentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCapitulo_Denuncia2" Association="Self.fk_DenunciaCapitulo_Denuncia2">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaCapitulo" EntitySet="DenunciaCapitulo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaComentario_Denuncia2" Association="Self.fk_DenunciaComentario_Denuncia2">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaComentario" EntitySet="DenunciaComentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCompeticao_Competicao1" Association="Self.fk_DenunciaCompeticao_Competicao1">
+            <End Role="Competicao" EntitySet="Competicao" />
+            <End Role="DenunciaCompeticao" EntitySet="DenunciaCompeticao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCompeticao_Denuncia1" Association="Self.fk_DenunciaCompeticao_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaCompeticao" EntitySet="DenunciaCompeticao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaEvento_Denuncia1" Association="Self.fk_DenunciaEvento_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaEvento" EntitySet="DenunciaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaEvento_EventoLiterario1" Association="Self.fk_DenunciaEvento_EventoLiterario1">
+            <End Role="EventoLiterario" EntitySet="EventoLiterario" />
+            <End Role="DenunciaEvento" EntitySet="DenunciaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaHistoria_Denuncia1" Association="Self.fk_DenunciaHistoria_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaHistoria" EntitySet="DenunciaHistoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaHistoria_Historia1" Association="Self.fk_DenunciaHistoria_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="DenunciaHistoria" EntitySet="DenunciaHistoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaUsuario_Denuncia1" Association="Self.fk_DenunciaUsuario_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaUsuario" EntitySet="DenunciaUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaUsuario_Usuario1" Association="Self.fk_DenunciaUsuario_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DenunciaUsuario" EntitySet="DenunciaUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EventoLiterario_Localizacao1" Association="Self.fk_EventoLiterario_Localizacao1">
+            <End Role="Localizacao" EntitySet="Localizacao" />
+            <End Role="EventoLiterario" EntitySet="EventoLiterario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EventoLiterario_Usuario1" Association="Self.fk_EventoLiterario_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EventoLiterario" EntitySet="EventoLiterario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Favorito_Historia1" Association="Self.fk_Favorito_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Favorito_Usuario1" Association="Self.fk_Favorito_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_Genero1" Association="Self.fk_Historia_Genero1">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_has_ListaLeitura_Historia1" Association="Self.fk_Historia_has_ListaLeitura_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="HistoriaXListaLeitura" EntitySet="HistoriaXListaLeitura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_has_ListaLeitura_ListaLeitura1" Association="Self.fk_Historia_has_ListaLeitura_ListaLeitura1">
+            <End Role="ListaLeitura" EntitySet="ListaLeitura" />
+            <End Role="HistoriaXListaLeitura" EntitySet="HistoriaXListaLeitura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_Idioma1" Association="Self.fk_Historia_Idioma1">
+            <End Role="Idioma" EntitySet="Idioma" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_Usuario1" Association="Self.fk_Historia_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ListaLeitura_Usuario1" Association="Self.fk_ListaLeitura_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ListaLeitura" EntitySet="ListaLeitura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Nivel1" Association="Self.fk_Usuario_Nivel1">
+            <End Role="Nivel" EntitySet="Nivel" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Voto_Inscricao1" Association="Self.fk_Voto_Inscricao1">
+            <End Role="Inscricao" EntitySet="Inscricao" />
+            <End Role="Voto" EntitySet="Voto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Voto_Usuario1" Association="Self.fk_Voto_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Voto" EntitySet="Voto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeepWritingBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Capitulo">
+          <Key>
+            <PropertyRef Name="IdCapitulo" />
+          </Key>
+          <Property Name="IdCapitulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Conteudo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Situacao" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="Int32" />
+          <Property Name="IdHistoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comentario" Relationship="Self.fk_Comentario_Capitulo1" FromRole="Capitulo" ToRole="Comentario" />
+          <NavigationProperty Name="DenunciaCapitulo" Relationship="Self.fk_DenunciaCapitulo_Capitulo1" FromRole="Capitulo" ToRole="DenunciaCapitulo" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_Capitulo_Historia1" FromRole="Capitulo" ToRole="Historia" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="Int32" Nullable="false" />
+          <Property Name="Conteudo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdCapitulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Capitulo" Relationship="Self.fk_Comentario_Capitulo1" FromRole="Comentario" ToRole="Capitulo" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Comentario_Usuario1" FromRole="Comentario" ToRole="Usuario" />
+          <NavigationProperty Name="DenunciaComentario" Relationship="Self.fk_DenunciaCapitulo_Comentario1" FromRole="Comentario" ToRole="DenunciaComentario" />
+        </EntityType>
+        <EntityType Name="Competicao">
+          <Key>
+            <PropertyRef Name="IdCompeticao" />
+          </Key>
+          <Property Name="IdCompeticao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataInicioInscri" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFimInscri" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataInicioVota" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFimVota" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PontoExperiencia" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inscricao" Relationship="Self.fk_Competicao_has_Historia_Competicao1" FromRole="Competicao" ToRole="Inscricao" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Competicao_Usuario" FromRole="Competicao" ToRole="Usuario" />
+          <NavigationProperty Name="DenunciaCompeticao" Relationship="Self.fk_DenunciaCompeticao_Competicao1" FromRole="Competicao" ToRole="DenunciaCompeticao" />
+          <Property Name="Vencedora" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Denuncia">
+          <Key>
+            <PropertyRef Name="IdDenuncia" />
+          </Key>
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Motivo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Explicacao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Denuncia_Usuario1" FromRole="Denuncia" ToRole="Usuario" />
+          <NavigationProperty Name="DenunciaCapitulo" Relationship="Self.fk_DenunciaCapitulo_Denuncia2" FromRole="Denuncia" ToRole="DenunciaCapitulo" />
+          <NavigationProperty Name="DenunciaComentario" Relationship="Self.fk_DenunciaComentario_Denuncia2" FromRole="Denuncia" ToRole="DenunciaComentario" />
+          <NavigationProperty Name="DenunciaCompeticao" Relationship="Self.fk_DenunciaCompeticao_Denuncia1" FromRole="Denuncia" ToRole="DenunciaCompeticao" />
+          <NavigationProperty Name="DenunciaEvento" Relationship="Self.fk_DenunciaEvento_Denuncia1" FromRole="Denuncia" ToRole="DenunciaEvento" />
+          <NavigationProperty Name="DenunciaHistoria" Relationship="Self.fk_DenunciaHistoria_Denuncia1" FromRole="Denuncia" ToRole="DenunciaHistoria" />
+          <NavigationProperty Name="DenunciaUsuario" Relationship="Self.fk_DenunciaUsuario_Denuncia1" FromRole="Denuncia" ToRole="DenunciaUsuario" />
+        </EntityType>
+        <EntityType Name="DenunciaCapitulo">
+          <Key>
+            <PropertyRef Name="IdDenunciaCapitulo" />
+          </Key>
+          <Property Name="IdDenunciaCapitulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCapitulo" Type="Int32" Nullable="false" />
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Capitulo" Relationship="Self.fk_DenunciaCapitulo_Capitulo1" FromRole="DenunciaCapitulo" ToRole="Capitulo" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_DenunciaCapitulo_Denuncia2" FromRole="DenunciaCapitulo" ToRole="Denuncia" />
+        </EntityType>
+        <EntityType Name="DenunciaComentario">
+          <Key>
+            <PropertyRef Name="IdDenunciaComentario" />
+          </Key>
+          <Property Name="IdDenunciaComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdComentario" Type="Int32" Nullable="false" />
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comentario" Relationship="Self.fk_DenunciaCapitulo_Comentario1" FromRole="DenunciaComentario" ToRole="Comentario" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_DenunciaComentario_Denuncia2" FromRole="DenunciaComentario" ToRole="Denuncia" />
+        </EntityType>
+        <EntityType Name="DenunciaCompeticao">
+          <Key>
+            <PropertyRef Name="IdDenunciaCompeticao" />
+          </Key>
+          <Property Name="IdDenunciaCompeticao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <Property Name="IdCompeticao" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Competicao" Relationship="Self.fk_DenunciaCompeticao_Competicao1" FromRole="DenunciaCompeticao" ToRole="Competicao" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_DenunciaCompeticao_Denuncia1" FromRole="DenunciaCompeticao" ToRole="Denuncia" />
+        </EntityType>
+        <EntityType Name="DenunciaEvento">
+          <Key>
+            <PropertyRef Name="IdDenunciaEvento" />
+          </Key>
+          <Property Name="IdDenunciaEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <Property Name="IdEvento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_DenunciaEvento_Denuncia1" FromRole="DenunciaEvento" ToRole="Denuncia" />
+          <NavigationProperty Name="EventoLiterario" Relationship="Self.fk_DenunciaEvento_EventoLiterario1" FromRole="DenunciaEvento" ToRole="EventoLiterario" />
+        </EntityType>
+        <EntityType Name="DenunciaHistoria">
+          <Key>
+            <PropertyRef Name="IdDenunciaHistoria" />
+          </Key>
+          <Property Name="IdDenunciaHistoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHistoria" Type="Int32" Nullable="false" />
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_DenunciaHistoria_Denuncia1" FromRole="DenunciaHistoria" ToRole="Denuncia" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_DenunciaHistoria_Historia1" FromRole="DenunciaHistoria" ToRole="Historia" />
+        </EntityType>
+        <EntityType Name="DenunciaUsuario">
+          <Key>
+            <PropertyRef Name="IdDenunciaUsuario" />
+          </Key>
+          <Property Name="IdDenunciaUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_DenunciaUsuario_Denuncia1" FromRole="DenunciaUsuario" ToRole="Denuncia" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_DenunciaUsuario_Usuario1" FromRole="DenunciaUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="EventoLiterario">
+          <Key>
+            <PropertyRef Name="IdEvento" />
+          </Key>
+          <Property Name="IdEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagem" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="Int32" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdLocalizacao" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DenunciaEvento" Relationship="Self.fk_DenunciaEvento_EventoLiterario1" FromRole="EventoLiterario" ToRole="DenunciaEvento" />
+          <NavigationProperty Name="Localizacao" Relationship="Self.fk_EventoLiterario_Localizacao1" FromRole="EventoLiterario" ToRole="Localizacao" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_EventoLiterario_Usuario1" FromRole="EventoLiterario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Favorito">
+          <Key>
+            <PropertyRef Name="IdFavorito" />
+          </Key>
+          <Property Name="IdFavorito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdHistoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Favorito_Usuario1" FromRole="Favorito" ToRole="Usuario" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_Favorito_Historia1" FromRole="Favorito" ToRole="Historia" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="IdGenero" />
+          </Key>
+          <Property Name="IdGenero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomePortugues" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomeIngles" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_Historia_Genero1" FromRole="Genero" ToRole="Historia" />
+        </EntityType>
+        <EntityType Name="Idioma">
+          <Key>
+            <PropertyRef Name="IdIdioma" />
+          </Key>
+          <Property Name="IdIdioma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_Historia_Idioma1" FromRole="Idioma" ToRole="Historia" />
+        </EntityType>
+        <EntityType Name="Inscricao">
+          <Key>
+            <PropertyRef Name="IdCompeticao" />
+            <PropertyRef Name="IdHistoria" />
+          </Key>
+          <Property Name="IdCompeticao" Type="Int32" Nullable="false" />
+          <Property Name="IdHistoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Competicao" Relationship="Self.fk_Competicao_has_Historia_Competicao1" FromRole="Inscricao" ToRole="Competicao" />
+          <Property Name="QtdVotos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_Competicao_has_Historia_Historia1" FromRole="Inscricao" ToRole="Historia" />
+          <NavigationProperty Name="Voto" Relationship="KeepWritingBDModel.fk_Voto_Inscricao1" FromRole="Inscricao" ToRole="Voto" />
+        </EntityType>
+        <EntityType Name="Localizacao">
+          <Key>
+            <PropertyRef Name="IdLocalizacao" />
+          </Key>
+          <Property Name="IdLocalizacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Endereco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EventoLiterario" Relationship="Self.fk_EventoLiterario_Localizacao1" FromRole="Localizacao" ToRole="EventoLiterario" />
+        </EntityType>
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="IdNivel" />
+          </Key>
+          <Property Name="IdNivel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QtdPontoMinimo" Type="Int32" Nullable="false" />
+          <Property Name="QtdPontoMaximo" Type="Int32" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_Nivel1" FromRole="Nivel" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataNasc" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Descricao" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QtdHistorias" Type="Int32" />
+          <Property Name="QtdPonto" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioAlteraStatus" Type="Int32" />
+          <Property Name="EmailVerificado" Type="Boolean" />
+          <Property Name="CodigoAtivacao" Type="Guid" />
+          <Property Name="Otp" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="IdNivel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comentario" Relationship="Self.fk_Comentario_Usuario1" FromRole="Usuario" ToRole="Comentario" />
+          <NavigationProperty Name="Competicao" Relationship="Self.fk_Competicao_Usuario" FromRole="Usuario" ToRole="Competicao" />
+          <NavigationProperty Name="Denuncia" Relationship="Self.fk_Denuncia_Usuario1" FromRole="Usuario" ToRole="Denuncia" />
+          <NavigationProperty Name="DenunciaUsuario" Relationship="Self.fk_DenunciaUsuario_Usuario1" FromRole="Usuario" ToRole="DenunciaUsuario" />
+          <NavigationProperty Name="EventoLiterario" Relationship="Self.fk_EventoLiterario_Usuario1" FromRole="Usuario" ToRole="EventoLiterario" />
+          <NavigationProperty Name="Favorito" Relationship="Self.fk_Favorito_Usuario1" FromRole="Usuario" ToRole="Favorito" />
+          <NavigationProperty Name="Nivel" Relationship="Self.fk_Usuario_Nivel1" FromRole="Usuario" ToRole="Nivel" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.fk_Historia_Usuario1" FromRole="Usuario" ToRole="Historia" />
+          <NavigationProperty Name="ListaLeitura" Relationship="KeepWritingBDModel.fk_ListaLeitura_Usuario1" FromRole="Usuario" ToRole="ListaLeitura" />
+          <NavigationProperty Name="Voto" Relationship="KeepWritingBDModel.fk_Voto_Usuario1" FromRole="Usuario" ToRole="Voto" />
+        </EntityType>
+        <EntityType Name="PontoExperiencia">
+          <Key>
+            <PropertyRef Name="IdPontoExperiencia" />
+            <PropertyRef Name="Acao" />
+            <PropertyRef Name="QtdPonto" />
+          </Key>
+          <Property Name="IdPontoExperiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Acao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QtdPonto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Comentario_Capitulo1">
+          <End Role="Capitulo" Type="Self.Capitulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capitulo">
+              <PropertyRef Name="IdCapitulo" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="IdCapitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCapitulo_Capitulo1">
+          <End Role="Capitulo" Type="Self.Capitulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaCapitulo" Type="Self.DenunciaCapitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capitulo">
+              <PropertyRef Name="IdCapitulo" />
+            </Principal>
+            <Dependent Role="DenunciaCapitulo">
+              <PropertyRef Name="IdCapitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comentario_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCapitulo_Comentario1">
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaComentario" Type="Self.DenunciaComentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comentario">
+              <PropertyRef Name="IdComentario" />
+            </Principal>
+            <Dependent Role="DenunciaComentario">
+              <PropertyRef Name="IdComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Competicao_has_Historia_Competicao1">
+          <End Role="Competicao" Type="Self.Competicao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inscricao" Type="Self.Inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competicao">
+              <PropertyRef Name="IdCompeticao" />
+            </Principal>
+            <Dependent Role="Inscricao">
+              <PropertyRef Name="IdCompeticao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Competicao_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Competicao" Type="Self.Competicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Competicao">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCompeticao_Competicao1">
+          <End Role="Competicao" Type="Self.Competicao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaCompeticao" Type="Self.DenunciaCompeticao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competicao">
+              <PropertyRef Name="IdCompeticao" />
+            </Principal>
+            <Dependent Role="DenunciaCompeticao">
+              <PropertyRef Name="IdCompeticao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Denuncia_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Denuncia">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCapitulo_Denuncia2">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaCapitulo" Type="Self.DenunciaCapitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaCapitulo">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaComentario_Denuncia2">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaComentario" Type="Self.DenunciaComentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaComentario">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaCompeticao_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaCompeticao" Type="Self.DenunciaCompeticao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaCompeticao">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaEvento_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaEvento" Type="Self.DenunciaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaEvento">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaHistoria_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaHistoria" Type="Self.DenunciaHistoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaHistoria">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaUsuario_Denuncia1">
+          <End Role="Denuncia" Type="Self.Denuncia" Multiplicity="1" />
+          <End Role="DenunciaUsuario" Type="Self.DenunciaUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denuncia">
+              <PropertyRef Name="IdDenuncia" />
+            </Principal>
+            <Dependent Role="DenunciaUsuario">
+              <PropertyRef Name="IdDenuncia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaEvento_EventoLiterario1">
+          <End Role="EventoLiterario" Type="Self.EventoLiterario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaEvento" Type="Self.DenunciaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventoLiterario">
+              <PropertyRef Name="IdEvento" />
+            </Principal>
+            <Dependent Role="DenunciaEvento">
+              <PropertyRef Name="IdEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaUsuario_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciaUsuario" Type="Self.DenunciaUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="DenunciaUsuario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EventoLiterario_Localizacao1">
+          <End Role="Localizacao" Type="Self.Localizacao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventoLiterario" Type="Self.EventoLiterario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localizacao">
+              <PropertyRef Name="IdLocalizacao" />
+            </Principal>
+            <Dependent Role="EventoLiterario">
+              <PropertyRef Name="IdLocalizacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EventoLiterario_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventoLiterario" Type="Self.EventoLiterario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="EventoLiterario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Favorito_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Nivel1">
+          <End Role="Nivel" Type="Self.Nivel" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel">
+              <PropertyRef Name="IdNivel" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdNivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeepWritingBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Capitulo" EntityType="Self.Capitulo" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" />
+          <EntitySet Name="Competicao" EntityType="Self.Competicao" />
+          <EntitySet Name="Denuncia" EntityType="Self.Denuncia" />
+          <EntitySet Name="DenunciaCapitulo" EntityType="Self.DenunciaCapitulo" />
+          <EntitySet Name="DenunciaComentario" EntityType="Self.DenunciaComentario" />
+          <EntitySet Name="DenunciaCompeticao" EntityType="Self.DenunciaCompeticao" />
+          <EntitySet Name="DenunciaEvento" EntityType="Self.DenunciaEvento" />
+          <EntitySet Name="DenunciaHistoria" EntityType="Self.DenunciaHistoria" />
+          <EntitySet Name="DenunciaUsuario" EntityType="Self.DenunciaUsuario" />
+          <EntitySet Name="EventoLiterario" EntityType="Self.EventoLiterario" />
+          <EntitySet Name="Favorito" EntityType="Self.Favorito" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" />
+          <EntitySet Name="Idioma" EntityType="Self.Idioma" />
+          <EntitySet Name="Inscricao" EntityType="Self.Inscricao" />
+          <EntitySet Name="Localizacao" EntityType="Self.Localizacao" />
+          <EntitySet Name="Nivel" EntityType="Self.Nivel" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="PontoExperiencia" EntityType="Self.PontoExperiencia" />
+          <AssociationSet Name="fk_Comentario_Capitulo1" Association="Self.fk_Comentario_Capitulo1">
+            <End Role="Capitulo" EntitySet="Capitulo" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCapitulo_Capitulo1" Association="Self.fk_DenunciaCapitulo_Capitulo1">
+            <End Role="Capitulo" EntitySet="Capitulo" />
+            <End Role="DenunciaCapitulo" EntitySet="DenunciaCapitulo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comentario_Usuario1" Association="Self.fk_Comentario_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCapitulo_Comentario1" Association="Self.fk_DenunciaCapitulo_Comentario1">
+            <End Role="Comentario" EntitySet="Comentario" />
+            <End Role="DenunciaComentario" EntitySet="DenunciaComentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Competicao_has_Historia_Competicao1" Association="Self.fk_Competicao_has_Historia_Competicao1">
+            <End Role="Competicao" EntitySet="Competicao" />
+            <End Role="Inscricao" EntitySet="Inscricao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Competicao_Usuario" Association="Self.fk_Competicao_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Competicao" EntitySet="Competicao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCompeticao_Competicao1" Association="Self.fk_DenunciaCompeticao_Competicao1">
+            <End Role="Competicao" EntitySet="Competicao" />
+            <End Role="DenunciaCompeticao" EntitySet="DenunciaCompeticao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Denuncia_Usuario1" Association="Self.fk_Denuncia_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Denuncia" EntitySet="Denuncia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCapitulo_Denuncia2" Association="Self.fk_DenunciaCapitulo_Denuncia2">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaCapitulo" EntitySet="DenunciaCapitulo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaComentario_Denuncia2" Association="Self.fk_DenunciaComentario_Denuncia2">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaComentario" EntitySet="DenunciaComentario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaCompeticao_Denuncia1" Association="Self.fk_DenunciaCompeticao_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaCompeticao" EntitySet="DenunciaCompeticao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaEvento_Denuncia1" Association="Self.fk_DenunciaEvento_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaEvento" EntitySet="DenunciaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaHistoria_Denuncia1" Association="Self.fk_DenunciaHistoria_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaHistoria" EntitySet="DenunciaHistoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaUsuario_Denuncia1" Association="Self.fk_DenunciaUsuario_Denuncia1">
+            <End Role="Denuncia" EntitySet="Denuncia" />
+            <End Role="DenunciaUsuario" EntitySet="DenunciaUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaEvento_EventoLiterario1" Association="Self.fk_DenunciaEvento_EventoLiterario1">
+            <End Role="EventoLiterario" EntitySet="EventoLiterario" />
+            <End Role="DenunciaEvento" EntitySet="DenunciaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaUsuario_Usuario1" Association="Self.fk_DenunciaUsuario_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DenunciaUsuario" EntitySet="DenunciaUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EventoLiterario_Localizacao1" Association="Self.fk_EventoLiterario_Localizacao1">
+            <End Role="Localizacao" EntitySet="Localizacao" />
+            <End Role="EventoLiterario" EntitySet="EventoLiterario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EventoLiterario_Usuario1" Association="Self.fk_EventoLiterario_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EventoLiterario" EntitySet="EventoLiterario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Favorito_Usuario1" Association="Self.fk_Favorito_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Nivel1" Association="Self.fk_Usuario_Nivel1">
+            <End Role="Nivel" EntitySet="Nivel" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="Historia" EntityType="KeepWritingBDModel.Historia" />
+          <EntitySet Name="ListaLeitura" EntityType="KeepWritingBDModel.ListaLeitura" />
+          <AssociationSet Name="fk_Capitulo_Historia1" Association="KeepWritingBDModel.fk_Capitulo_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Capitulo" EntitySet="Capitulo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DenunciaHistoria_Historia1" Association="KeepWritingBDModel.fk_DenunciaHistoria_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="DenunciaHistoria" EntitySet="DenunciaHistoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Favorito_Historia1" Association="KeepWritingBDModel.fk_Favorito_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_Genero1" Association="KeepWritingBDModel.fk_Historia_Genero1">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Competicao_has_Historia_Historia1" Association="KeepWritingBDModel.fk_Competicao_has_Historia_Historia1">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Inscricao" EntitySet="Inscricao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_Idioma1" Association="KeepWritingBDModel.fk_Historia_Idioma1">
+            <End Role="Idioma" EntitySet="Idioma" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Historia_Usuario1" Association="KeepWritingBDModel.fk_Historia_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ListaLeitura_Usuario1" Association="KeepWritingBDModel.fk_ListaLeitura_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ListaLeitura" EntitySet="ListaLeitura" />
+          </AssociationSet>
+          <AssociationSet Name="HistoriaXListaLeitura" Association="KeepWritingBDModel.HistoriaXListaLeitura">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="ListaLeitura" EntitySet="ListaLeitura" />
+          </AssociationSet>
+          <EntitySet Name="Voto" EntityType="KeepWritingBDModel.Voto" />
+          <AssociationSet Name="fk_Voto_Inscricao1" Association="KeepWritingBDModel.fk_Voto_Inscricao1">
+            <End Role="Inscricao" EntitySet="Inscricao" />
+            <End Role="Voto" EntitySet="Voto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Voto_Usuario1" Association="KeepWritingBDModel.fk_Voto_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Voto" EntitySet="Voto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Historia">
+          <Key>
+            <PropertyRef Name="IdHistoria" />
+          </Key>
+          <Property Name="IdHistoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Capa" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Sinopse" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="Classificacao" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="QtdFavoritos" Type="Int32" Nullable="false" />
+          <Property Name="Situacao" Type="Boolean" Nullable="false" />
+          <Property Name="QtdVisualizacoes" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioAlteraStatus" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdIdioma" Type="Int32" Nullable="false" />
+          <Property Name="IdGenero" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Capitulo" Relationship="KeepWritingBDModel.fk_Capitulo_Historia1" FromRole="Historia" ToRole="Capitulo" />
+          <NavigationProperty Name="DenunciaHistoria" Relationship="KeepWritingBDModel.fk_DenunciaHistoria_Historia1" FromRole="Historia" ToRole="DenunciaHistoria" />
+          <NavigationProperty Name="Favorito" Relationship="KeepWritingBDModel.fk_Favorito_Historia1" FromRole="Historia" ToRole="Favorito" />
+          <NavigationProperty Name="Genero" Relationship="KeepWritingBDModel.fk_Historia_Genero1" FromRole="Historia" ToRole="Genero" />
+          <NavigationProperty Name="Inscricao" Relationship="KeepWritingBDModel.fk_Competicao_has_Historia_Historia1" FromRole="Historia" ToRole="Inscricao" />
+          <NavigationProperty Name="Idioma" Relationship="KeepWritingBDModel.fk_Historia_Idioma1" FromRole="Historia" ToRole="Idioma" />
+          <NavigationProperty Name="Usuario" Relationship="KeepWritingBDModel.fk_Historia_Usuario1" FromRole="Historia" ToRole="Usuario" />
+          <NavigationProperty Name="ListaLeitura" Relationship="KeepWritingBDModel.HistoriaXListaLeitura" FromRole="Historia" ToRole="ListaLeitura" />
+        </EntityType>
+        <EntityType Name="ListaLeitura">
+          <Key>
+            <PropertyRef Name="IdListaLeitura" />
+          </Key>
+          <Property Name="IdListaLeitura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="KeepWritingBDModel.fk_ListaLeitura_Usuario1" FromRole="ListaLeitura" ToRole="Usuario" />
+          <NavigationProperty Name="Historia" Relationship="KeepWritingBDModel.HistoriaXListaLeitura" FromRole="ListaLeitura" ToRole="Historia" />
+        </EntityType>
+        <Association Name="fk_Capitulo_Historia1">
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.Capitulo" Role="Capitulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Capitulo">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DenunciaHistoria_Historia1">
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.DenunciaHistoria" Role="DenunciaHistoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="DenunciaHistoria">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Favorito_Historia1">
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.Favorito" Role="Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_Genero1">
+          <End Type="KeepWritingBDModel.Genero" Role="Genero" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="IdGenero" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="IdGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Competicao_has_Historia_Historia1">
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="1" />
+          <End Type="KeepWritingBDModel.Inscricao" Role="Inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Inscricao">
+              <PropertyRef Name="IdHistoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_Idioma1">
+          <End Type="KeepWritingBDModel.Idioma" Role="Idioma" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Idioma">
+              <PropertyRef Name="IdIdioma" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="IdIdioma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Historia_Usuario1">
+          <End Type="KeepWritingBDModel.Usuario" Role="Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ListaLeitura_Usuario1">
+          <End Type="KeepWritingBDModel.Usuario" Role="Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.ListaLeitura" Role="ListaLeitura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="ListaLeitura">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HistoriaXListaLeitura">
+          <End Type="KeepWritingBDModel.Historia" Role="Historia" Multiplicity="*" />
+          <End Type="KeepWritingBDModel.ListaLeitura" Role="ListaLeitura" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Voto">
+          <Key>
+            <PropertyRef Name="IdVoto" />
+          </Key>
+          <Property Name="IdVoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdInscricaoComp" Type="Int32" Nullable="false" />
+          <Property Name="IdInscricaoHist" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inscricao" Relationship="KeepWritingBDModel.fk_Voto_Inscricao1" FromRole="Voto" ToRole="Inscricao" />
+          <NavigationProperty Name="Usuario" Relationship="KeepWritingBDModel.fk_Voto_Usuario1" FromRole="Voto" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="fk_Voto_Inscricao1">
+          <End Type="KeepWritingBDModel.Inscricao" Role="Inscricao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KeepWritingBDModel.Voto" Role="Voto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inscricao">
+              <PropertyRef Name="IdCompeticao" />
+              <PropertyRef Name="IdHistoria" />
+            </Principal>
+            <Dependent Role="Voto">
+              <PropertyRef Name="IdInscricaoComp" />
+              <PropertyRef Name="IdInscricaoHist" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Voto_Usuario1">
+          <End Type="KeepWritingBDModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="KeepWritingBDModel.Voto" Role="Voto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Voto">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KeepWritingBDModelStoreContainer" CdmEntityContainer="KeepWritingBDEntities">
+    <EntitySetMapping Name="Capitulo">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Capitulo)">
+        <MappingFragment StoreEntitySet="Capitulo">
+          <ScalarProperty Name="IdCapitulo" ColumnName="IdCapitulo" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Conteudo" ColumnName="Conteudo" />
+          <ScalarProperty Name="Situacao" ColumnName="Situacao" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsuarioAlteraStatus" ColumnName="UsuarioAlteraStatus" />
+          <ScalarProperty Name="IdHistoria" ColumnName="IdHistoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comentario">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Comentario)">
+        <MappingFragment StoreEntitySet="Comentario">
+          <ScalarProperty Name="IdComentario" ColumnName="IdComentario" />
+          <ScalarProperty Name="Conteudo" ColumnName="Conteudo" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsuarioAlteraStatus" ColumnName="UsuarioAlteraStatus" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCapitulo" ColumnName="IdCapitulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competicao">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Competicao)">
+        <MappingFragment StoreEntitySet="Competicao">
+          <ScalarProperty Name="IdCompeticao" ColumnName="IdCompeticao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="DataInicioInscri" ColumnName="DataInicioInscri" />
+          <ScalarProperty Name="DataFimInscri" ColumnName="DataFimInscri" />
+          <ScalarProperty Name="DataInicioVota" ColumnName="DataInicioVota" />
+          <ScalarProperty Name="DataFimVota" ColumnName="DataFimVota" />
+          <ScalarProperty Name="PontoExperiencia" ColumnName="PontoExperiencia" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsuarioAlteraStatus" ColumnName="UsuarioAlteraStatus" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Vencedora" ColumnName="Vencedora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Denuncia">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Denuncia)">
+        <MappingFragment StoreEntitySet="Denuncia">
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+          <ScalarProperty Name="Explicacao" ColumnName="Explicacao" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenunciaCapitulo">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.DenunciaCapitulo)">
+        <MappingFragment StoreEntitySet="DenunciaCapitulo">
+          <ScalarProperty Name="IdDenunciaCapitulo" ColumnName="IdDenunciaCapitulo" />
+          <ScalarProperty Name="IdCapitulo" ColumnName="IdCapitulo" />
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenunciaComentario">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.DenunciaComentario)">
+        <MappingFragment StoreEntitySet="DenunciaComentario">
+          <ScalarProperty Name="IdDenunciaComentario" ColumnName="IdDenunciaComentario" />
+          <ScalarProperty Name="IdComentario" ColumnName="IdComentario" />
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenunciaCompeticao">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.DenunciaCompeticao)">
+        <MappingFragment StoreEntitySet="DenunciaCompeticao">
+          <ScalarProperty Name="IdDenunciaCompeticao" ColumnName="IdDenunciaCompeticao" />
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+          <ScalarProperty Name="IdCompeticao" ColumnName="IdCompeticao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenunciaEvento">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.DenunciaEvento)">
+        <MappingFragment StoreEntitySet="DenunciaEvento">
+          <ScalarProperty Name="IdDenunciaEvento" ColumnName="IdDenunciaEvento" />
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+          <ScalarProperty Name="IdEvento" ColumnName="IdEvento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenunciaHistoria">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.DenunciaHistoria)">
+        <MappingFragment StoreEntitySet="DenunciaHistoria">
+          <ScalarProperty Name="IdDenunciaHistoria" ColumnName="IdDenunciaHistoria" />
+          <ScalarProperty Name="IdHistoria" ColumnName="IdHistoria" />
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DenunciaUsuario">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.DenunciaUsuario)">
+        <MappingFragment StoreEntitySet="DenunciaUsuario">
+          <ScalarProperty Name="IdDenunciaUsuario" ColumnName="IdDenunciaUsuario" />
+          <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventoLiterario">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.EventoLiterario)">
+        <MappingFragment StoreEntitySet="EventoLiterario">
+          <ScalarProperty Name="IdEvento" ColumnName="IdEvento" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+          <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsuarioAlteraStatus" ColumnName="UsuarioAlteraStatus" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdLocalizacao" ColumnName="IdLocalizacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favorito">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Favorito)">
+        <MappingFragment StoreEntitySet="Favorito">
+          <ScalarProperty Name="IdFavorito" ColumnName="IdFavorito" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdHistoria" ColumnName="IdHistoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genero">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Genero)">
+        <MappingFragment StoreEntitySet="Genero">
+          <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+          <ScalarProperty Name="NomePortugues" ColumnName="NomePortugues" />
+          <ScalarProperty Name="NomeIngles" ColumnName="NomeIngles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Idioma">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Idioma)">
+        <MappingFragment StoreEntitySet="Idioma">
+          <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inscricao">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Inscricao)">
+        <MappingFragment StoreEntitySet="Inscricao">
+          <ScalarProperty Name="IdCompeticao" ColumnName="IdCompeticao" />
+          <ScalarProperty Name="IdHistoria" ColumnName="IdHistoria" />
+          <ScalarProperty Name="QtdVotos" ColumnName="QtdVotos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Localizacao">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Localizacao)">
+        <MappingFragment StoreEntitySet="Localizacao">
+          <ScalarProperty Name="IdLocalizacao" ColumnName="IdLocalizacao" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="Local" ColumnName="Local" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nivel">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Nivel)">
+        <MappingFragment StoreEntitySet="Nivel">
+          <ScalarProperty Name="IdNivel" ColumnName="IdNivel" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="QtdPontoMinimo" ColumnName="QtdPontoMinimo" />
+          <ScalarProperty Name="QtdPontoMaximo" ColumnName="QtdPontoMaximo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.Usuario)">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="DataNasc" ColumnName="DataNasc" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="QtdHistorias" ColumnName="QtdHistorias" />
+          <ScalarProperty Name="QtdPonto" ColumnName="QtdPonto" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsuarioAlteraStatus" ColumnName="UsuarioAlteraStatus" />
+          <ScalarProperty Name="EmailVerificado" ColumnName="EmailVerificado" />
+          <ScalarProperty Name="CodigoAtivacao" ColumnName="CodigoAtivacao" />
+          <ScalarProperty Name="Otp" ColumnName="Otp" />
+          <ScalarProperty Name="IdNivel" ColumnName="IdNivel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PontoExperiencia">
+      <EntityTypeMapping TypeName="IsTypeOf(KeepWritingBDModel.PontoExperiencia)">
+        <MappingFragment StoreEntitySet="PontoExperiencia">
+          <ScalarProperty Name="IdPontoExperiencia" ColumnName="IdPontoExperiencia" />
+          <ScalarProperty Name="Acao" ColumnName="Acao" />
+          <ScalarProperty Name="QtdPonto" ColumnName="QtdPonto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="Historia">
+            <EntityTypeMapping TypeName="KeepWritingBDModel.Historia">
+              <MappingFragment StoreEntitySet="Historia">
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+                <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="UsuarioAlteraStatus" ColumnName="UsuarioAlteraStatus" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="QtdVisualizacoes" ColumnName="QtdVisualizacoes" />
+                <ScalarProperty Name="Situacao" ColumnName="Situacao" />
+                <ScalarProperty Name="QtdFavoritos" ColumnName="QtdFavoritos" />
+                <ScalarProperty Name="Classificacao" ColumnName="Classificacao" />
+                <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
+                <ScalarProperty Name="Capa" ColumnName="Capa" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="IdHistoria" ColumnName="IdHistoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListaLeitura">
+            <EntityTypeMapping TypeName="KeepWritingBDModel.ListaLeitura">
+              <MappingFragment StoreEntitySet="ListaLeitura">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdListaLeitura" ColumnName="IdListaLeitura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HistoriaXListaLeitura" TypeName="KeepWritingBDModel.HistoriaXListaLeitura" StoreEntitySet="HistoriaXListaLeitura">
+            <EndProperty Name="ListaLeitura">
+              <ScalarProperty Name="IdListaLeitura" ColumnName="IdListaLeitura" />
+            </EndProperty>
+            <EndProperty Name="Historia">
+              <ScalarProperty Name="IdHistoria" ColumnName="IdHistoria" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Voto">
+            <EntityTypeMapping TypeName="KeepWritingBDModel.Voto">
+              <MappingFragment StoreEntitySet="Voto">
+                <ScalarProperty Name="IdInscricaoHist" ColumnName="IdInscricaoHist" />
+                <ScalarProperty Name="IdInscricaoComp" ColumnName="IdInscricaoComp" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdVoto" ColumnName="IdVoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

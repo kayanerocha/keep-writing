@@ -1,0 +1,43 @@
+﻿@model IEnumerable<KeepWriting.Models.Inscricao>
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Historia.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QtdVotos)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Historia.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QtdVotos)
+        </td>
+        <td>
+            @{
+                var usuarioLogado = (KeepWriting.Models.Usuario)HttpContext.Current.Session["usuario"];
+                int idUsuario = Convert.ToInt32(usuarioLogado.IdUsuario);
+                if (item.Historia.IdUsuario == idUsuario && item.Competicao.DataInicioInscri <= DateTime.Now /*&& DateTime.Now <= item.Competicao.DataFimInscri*/)
+                {
+                    @Html.RouteLink("Cancelar inscrição", "CancelarInscricao", new { idCompeticao = item.Competicao.IdCompeticao, idHistoria = item.IdHistoria, action = "Cancelar" }, new { @class = "text-lg" }) //Não está funcionando
+                }
+                if (@*item.Competicao.DataInicioVota <= DateTime.Now &&*@ DateTime.Now <= item.Competicao.DataFimVota)
+                {
+                    @Html.RouteLink("Votar", "VotarCompeticao", new { idCompeticao = item.IdCompeticao, idHistoria = item.IdHistoria, action = "Votar" }, new { @class = "text-lg" })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+@ViewBag.Mensagem

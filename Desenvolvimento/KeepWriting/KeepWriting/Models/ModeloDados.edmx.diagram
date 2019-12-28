@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8d9475d936941e7878754a9ca46e253" Name="Diagram1" ZoomLevel="90">
+        <EntityTypeShape EntityType="KeepWritingBDModel.Capitulo" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Comentario" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Competicao" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Denuncia" Width="1.5" PointX="5.25" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.DenunciaCapitulo" Width="1.5" PointX="7.5" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.DenunciaComentario" Width="1.5" PointX="13.5" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.DenunciaCompeticao" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.DenunciaEvento" Width="1.5" PointX="10.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.DenunciaHistoria" Width="1.5" PointX="10.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.DenunciaUsuario" Width="1.5" PointX="10.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.EventoLiterario" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Favorito" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Genero" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Idioma" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Inscricao" Width="1.5" PointX="7.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Localizacao" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Nivel" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Usuario" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.PontoExperiencia" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Comentario_Capitulo1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaCapitulo_Capitulo1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Comentario_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaCapitulo_Comentario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Competicao_has_Historia_Competicao1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Competicao_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaCompeticao_Competicao1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Denuncia_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaCapitulo_Denuncia2" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaComentario_Denuncia2" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaCompeticao_Denuncia1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaEvento_Denuncia1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaHistoria_Denuncia1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaUsuario_Denuncia1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaEvento_EventoLiterario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaUsuario_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_EventoLiterario_Localizacao1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_EventoLiterario_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Favorito_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Usuario_Nivel1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Historia" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.ListaLeitura" Width="1.5" PointX="10.5" PointY="10.875" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Capitulo_Historia1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_DenunciaHistoria_Historia1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Favorito_Historia1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Historia_Genero1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Competicao_has_Historia_Historia1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Historia_Idioma1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Historia_Usuario1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_ListaLeitura_Usuario1" />
+        <AssociationConnector Association="KeepWritingBDModel.HistoriaXListaLeitura" />
+        <EntityTypeShape EntityType="KeepWritingBDModel.Voto" Width="1.5" PointX="13.75" PointY="15.75" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Voto_Inscricao1" />
+        <AssociationConnector Association="KeepWritingBDModel.fk_Voto_Usuario1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

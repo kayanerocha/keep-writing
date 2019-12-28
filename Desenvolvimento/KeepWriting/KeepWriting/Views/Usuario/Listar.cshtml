@@ -1,0 +1,79 @@
+﻿@model IEnumerable<KeepWriting.ViewModels.UsuarioViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QtdPonto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QtdHistorias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNasc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QtdPonto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QtdHistorias)
+        </td>
+        @if (item.Foto != null)
+        {
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Foto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+            </td>
+        }
+        else
+        {
+            <td>
+                <img src='~/Imagens/perfilUsuario.jpg' style="max-width:100px; max-height:100px;" />
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Nivel)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.IdUsuario }) |
+            @Html.ActionLink("Detalhes", "DetalhesPrivados", new { @id = item.IdUsuario }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id = item.IdUsuario })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="autor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="aventura" xml:space="preserve">
+    <value>Adventure</value>
+  </data>
+  <data name="cadastro" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="capa" xml:space="preserve">
+    <value>Cape</value>
+  </data>
+  <data name="cidade" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="classificacao" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="confirmarSenha" xml:space="preserve">
+    <value>Confirm the password</value>
+  </data>
+  <data name="criarHist" xml:space="preserve">
+    <value>Story</value>
+  </data>
+  <data name="dataFim" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="dataInicio" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="dataNasc" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="descricao" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="dezesseis" xml:space="preserve">
+    <value>For over 16 years</value>
+  </data>
+  <data name="dezoito" xml:space="preserve">
+    <value>For over 18 years</value>
+  </data>
+  <data name="digitarEmail" xml:space="preserve">
+    <value>Enter your email address</value>
+  </data>
+  <data name="digitarNome" xml:space="preserve">
+    <value>Type your name</value>
+  </data>
+  <data name="digitarSenha" xml:space="preserve">
+    <value>Enter a password</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="endereco" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="entrar" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="estado" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="favoritos" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="genero" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="idioma" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lembrar" xml:space="preserve">
+    <value>Do you remember me</value>
+  </data>
+  <data name="livre" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="maiorIdade" xml:space="preserve">
+    <value>More than 18</value>
+  </data>
+  <data name="nome" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="publicado" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="rascunho" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="senha" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="sinopse" xml:space="preserve">
+    <value>Synopsis</value>
+  </data>
+  <data name="situacaoCriar" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="situacaoListar" xml:space="preserve">
+    <value>Situation</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="statusValor" xml:space="preserve">
+    <value>This feature has been disabled by one of our administrators.</value>
+  </data>
+  <data name="titulo" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="visualizacoes" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="imagem" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="usuario" xml:space="preserve">
+    <value>Published by</value>
+  </data>
+  <data name="criarEvento" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="detalhes" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="editar" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="excluir" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="meusEventos" xml:space="preserve">
+    <value>My events</value>
+  </data>
+  <data name="conteudo" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="fimInscri" xml:space="preserve">
+    <value>Set a date to end the registration period</value>
+  </data>
+  <data name="fimVota" xml:space="preserve">
+    <value>Set a date to end voting time</value>
+  </data>
+  <data name="inicioInscri" xml:space="preserve">
+    <value>Set a date to start the registration period</value>
+  </data>
+  <data name="inicioVota" xml:space="preserve">
+    <value>Set a start date for voting time</value>
+  </data>
+  <data name="fimInscriListar" xml:space="preserve">
+    <value>The registration period ends</value>
+  </data>
+  <data name="fimVotaListar" xml:space="preserve">
+    <value>Voting time ends</value>
+  </data>
+  <data name="inicioInscriListar" xml:space="preserve">
+    <value>Registration period starts</value>
+  </data>
+  <data name="inicioVotaListar" xml:space="preserve">
+    <value>Voting time begins</value>
+  </data>
+  <data name="pontoExperiencia" xml:space="preserve">
+    <value>Experience Points</value>
+  </data>
+  <data name="qtdHistorias" xml:space="preserve">
+    <value>Number of Stories</value>
+  </data>
+  <data name="qtdPonto" xml:space="preserve">
+    <value>Number of Points</value>
+  </data>
+  <data name="nivel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="esqueceuSenha" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="irCadastrar" xml:space="preserve">
+    <value>Not registered yet?</value>
+  </data>
+  <data name="competicoes" xml:space="preserve">
+    <value>Competitions</value>
+  </data>
+  <data name="criar" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="criarCompeticao" xml:space="preserve">
+    <value>Competition</value>
+  </data>
+  <data name="criarLista" xml:space="preserve">
+    <value>Reading list</value>
+  </data>
+  <data name="eventos" xml:space="preserve">
+    <value>Literary Events</value>
+  </data>
+  <data name="generos" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="historias" xml:space="preserve">
+    <value>Stories</value>
+  </data>
+  <data name="pesquisar" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="visitante" xml:space="preserve">
+    <value>Hello visitor</value>
+  </data>
+</root>

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<KeepWriting.Models.EventoLiterario>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@KeepWriting.LocalResource.Resource.meusEventos</h2>
+
+<p>
+    @Html.ActionLink(KeepWriting.LocalResource.Resource.criarEvento.ToString(), "Criar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localizacao.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localizacao.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localizacao.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localizacao.Local)
+        </th>   
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Nome, "Detalhes", new { @id = item.IdEvento }, null)
+        </td>
+        @if (item.Imagem != null)
+        {
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Imagem);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+            </td>
+        }
+        else
+        {
+            <td>
+                <img src='~/Imagens/capaHistoria.png' style="max-width:100px; max-height:100px;" />
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Link)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localizacao.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Localizacao.Cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Localizacao.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Localizacao.Local)
+        </td>
+        @if (item.Status == "Desativado")
+        {
+            <td>@KeepWriting.LocalResource.Resource.statusValor</td>
+        }
+            <td>
+                @if (item.Status == "Ativado")
+                {
+                    @Html.ActionLink(KeepWriting.LocalResource.Resource.editar.ToString(), "Editar", new { id = item.IdEvento })
+                }
+                @Html.ActionLink(KeepWriting.LocalResource.Resource.excluir.ToString(), "Excluir", new { id = item.IdEvento })
+            </td>
+    </tr>
+}
+
+</table>

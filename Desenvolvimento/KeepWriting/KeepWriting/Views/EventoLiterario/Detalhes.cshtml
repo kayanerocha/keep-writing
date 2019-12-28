@@ -1,0 +1,143 @@
+﻿@model  KeepWriting.Models.EventoLiterario
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Eventos Literários</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </dt>
+
+        @if (Model.Imagem != null)
+        {
+            <dd>
+                @{
+                    var base64 = Convert.ToBase64String(Model.Imagem);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+            </dd>
+        }
+        else
+        {
+            <dd>
+                <img src='~/Imagens/capaHistoria.png' style="max-width:100px; max-height:100px;" />
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localizacao.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localizacao.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao.Cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localizacao.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localizacao.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao.Local)
+        </dd>
+        @{ 
+            var usuarioLogado = (KeepWriting.Models.Usuario)HttpContext.Current.Session["usuario"];
+            if (usuarioLogado != null)
+            {
+                if (Model.IdUsuario == usuarioLogado.IdUsuario)
+                {
+                    if (Model.Status == "Desativado")
+                    {
+                    <dd>
+                        @KeepWriting.LocalResource.Resource.statusValor
+                    </dd>
+                        }
+
+                    }
+                }
+            }      
+        
+    </dl>
+</div>
+<p>
+    @{
+        if (Session["IdUsuario"] != null && Model.IdUsuario == usuarioLogado.IdUsuario)
+        {
+            if (Model.Status == "Ativado")
+            {
+                @Html.ActionLink(KeepWriting.LocalResource.Resource.editar.ToString(), "Editar", new { id = Model.IdEvento });<br />
+            }
+            @Html.ActionLink(KeepWriting.LocalResource.Resource.meusEventos.ToString(), "MeusEventos");
+        }
+    }
+</p>

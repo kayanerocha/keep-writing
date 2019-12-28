@@ -1,0 +1,57 @@
+﻿@model IEnumerable<KeepWriting.Models.Capitulo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conteudo)
+        </th>
+        <th>
+            @KeepWriting.LocalResource.Resource.situacaoListar
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Titulo, "Detalhes", new { @id = item.IdCapitulo }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conteudo)
+        </td>
+        @if (item.Situacao == true)
+        {
+        <td>@KeepWriting.LocalResource.Resource.publicado</td>
+        }
+        else
+        {
+        <td>@KeepWriting.LocalResource.Resource.rascunho</td>
+        }
+        @if (item.Status == "Desativado")
+        {
+        <td>@KeepWriting.LocalResource.Resource.statusValor</td>
+        }
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.IdCapitulo }) |
+            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.IdCapitulo }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id = item.IdCapitulo })
+        </td>
+    </tr>
+    }
+
+</table>
+

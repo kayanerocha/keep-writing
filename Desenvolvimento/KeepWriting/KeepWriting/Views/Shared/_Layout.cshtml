@@ -1,0 +1,146 @@
+﻿@using System.Globalization
+@using System.Threading;
+@if (Request.IsAuthenticated) { }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Titulo - Keep Writing</title>
+    @Styles.Render("~/Content/css/_Layout")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+</head>
+<body>
+    <div class="site-wrap">
+        <div class="site-navbar py-2">
+            <div class="search-wrap">
+                <div class="container">
+                    <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+                    <form action="#" method="post">
+                        <input type="text" class="form-control" placeholder=@KeepWriting.LocalResource.Resource.pesquisar>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo">
+                        <div class="site-logo">
+                            <a class="d-block" href="#" rel="home"><img class="d-block" src="~/Imagens/keepwriting.png" alt="logo"></a>
+                        </div>
+                    </div>
+                    <div class="main-nav d-none d-lg-block">
+                        <nav class="site-navigation text-right text-md-center" role="navigation">
+                            <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                <li><a href="#">Home</a></li>
+                                <li class="has-children">
+                                    <a href="#">@KeepWriting.LocalResource.Resource.generos</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Aventura</a></li>
+                                        <li><a href="#">Ação</a></li>
+                                        <li><a href="#">Clássicos</a></li>
+                                        <li><a href="#">Conto</a></li>
+                                        <li><a href="#">Espiritual</a></li>
+                                        <li><a href="#">Fanfic</a></li>
+                                        <li><a href="#">Fantasia</a></li>
+                                        <li><a href="#">Ficção Adolescente</a></li>
+                                        <li><a href="#">Ficção Científica</a></li>
+                                        <li><a href="#">Ficção Geral</a></li>
+                                        <li><a href="#">Ficção História</a></li>
+                                        <li><a href="#">Humor</a></li>
+                                        <li><a href="#">Literatura Feminina</a></li>
+                                        <li><a href="#">Lobisomens</a></li>
+                                        <li><a href="#">Mistério</a></li>
+                                        <li><a href="#">Não Ficção</a></li>
+                                        <li><a href="#">Paranormal</a></li>
+                                        <li><a href="#">Poesia</a></li>
+                                        <li><a href="#">Romance</a></li>
+                                        <li><a href="#">Suspense</a></li>
+                                        <li><a href="#">Terror</a></li>
+                                        <li><a href="#">Vampiros</a></li>
+                                    </ul>
+                                </li>
+                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.competicoes, "Listar", "Competicao")</li>
+                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.eventos, "Listar", "EventoLiterario")</li>
+                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.historias, "Listar", "Historia")</li>
+                                @{
+                                    var usuarioLogado = (KeepWriting.Models.Usuario)HttpContext.Current.Session["usuario"];
+                                    if (usuarioLogado != null)
+                                    {
+                                        <li class="has-children">
+                                            <a href="#">@KeepWriting.LocalResource.Resource.criar</a>
+                                            <ul class="dropdown">
+                                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.criarHist, "Criar", "Historia")</li>
+                                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.criarLista, "Criar", "Lista")</li>
+                                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.criarCompeticao, "Criar", "Competicao")</li>
+                                                <li>@Html.ActionLink(KeepWriting.LocalResource.Resource.criarEvento, "Criar", "EventoLiterario")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="icons">
+                        <form method="post" action="/Usuario/Sair" id="frmSessao" class="navbar-right">
+                            <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+                            @{
+                                var msgVisitante = KeepWriting.LocalResource.Resource.visitante;
+                                if (usuarioLogado == null)
+                                {
+
+                                    <div class="icons-btn d-inline-block bag">
+                                        <label style="color: wheat">@msgVisitante</label>
+                                        @Html.ActionLink(KeepWriting.LocalResource.Resource.entrar, "Autenticacao", "Usuario")
+                                        <span class="icon-user"></span>
+                                        <span class="number">2</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <label style="color: wheat">@usuarioLogado.Nome</label>
+                                    <div></div>
+                                    <a href="@Url.Action("Sair", "Usuario")" class="icons-btn d-inline-block bag">
+                                        <span class="icon-user"></span>
+                                        <span class="number">2</span>
+                                    </a>
+                                }
+                            }
+                        </form>
+                        <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none">
+                            <span class="icon-menu"></span>
+                        </a>
+                    </div>
+                    <nav class="site-navigation text-right text-md-center" role="navigation">
+                        <ul class="site-menu js-clone-nav d-none d-lg-block">
+                            <li class="has-children">
+                                @KeepWriting.LocalResource.Resource.idioma
+                                <ul class="dropdown">
+                                    @{
+                                        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                                        <li><a href="/Usuario/ChangeCurrentCulture/0">Português</a></li>
+                                        <li><a href="/Usuario/ChangeCurrentCulture/1">English</a></li>
+                                        <li><a href="#">Spanish</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Keep Writing</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

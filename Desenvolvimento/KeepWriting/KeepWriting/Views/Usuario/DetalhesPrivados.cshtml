@@ -1,0 +1,93 @@
+﻿@model KeepWriting.ViewModels.UsuarioViewModel
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNasc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Senha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtdPonto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtdPonto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtdHistorias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtdHistorias)
+        </dd>
+
+        @if (Model.Foto != null)
+        {
+            <dt>
+                @{
+                    var base64 = Convert.ToBase64String(Model.Foto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+            </dt>
+        }
+        else
+        {
+            <dd>
+                <img src='~/Imagens/perfilUsuario.jpg' style="max-width:100px; max-height:100px;" />
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nivel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Editar", new { id = Model.IdUsuario }) |
+    @Html.ActionLink("Voltar para o perfil", "Listar")
+</p>

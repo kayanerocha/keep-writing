@@ -1,0 +1,109 @@
+﻿@model KeepWriting.ViewModels.CompeticaoViewModel
+
+<div>
+    <h4>Competicao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.InicioInscriListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicioInscri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.FimInscriListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFimInscri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.InicioVotaListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicioVota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdetails.FimVotaListar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFimVota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PontoExperiencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PontoExperiencia)
+        </dd>
+
+        @{
+            var usuarioLogado = (KeepWriting.Models.Usuario)HttpContext.Current.Session["usuario"];
+            if (usuarioLogado != null)
+            {
+                if (Model.IdUsuario == usuarioLogado.IdUsuario)
+                {
+                    if (Model.Status == "Desativado")
+                    {
+                        <dd>
+                            @Html.LabelFor(model => model.StatusValor)
+                        </dd>
+                    }
+
+                }
+            }
+        }
+
+        @if (usuarioLogado != null && Model.IdUsuario != usuarioLogado.IdUsuario)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.NomeUsuario)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NomeUsuario)
+            </dd>
+        }
+
+
+    </dl>
+</div>
+<p>
+    @if (Model.Status == "Ativado")
+    {
+        if (Model.DataInicioInscri > DateTime.Now)
+        {
+            @Html.ActionLink("Edit", "Editar", new { id = Model.IdCompeticao })
+        }
+        if (Model.DataInicioInscri <= DateTime.Now)
+        {
+            
+            @Html.RouteLink("Inscrever-se", "Inscrever", new { idCompeticao = Model.IdCompeticao, action = "Inscrever" }, new { @class = "text-lg" })
+             @Html.RouteLink("Histórias inscritas", "HistoriasInscritas", new { idCompeticao = Model.IdCompeticao, action = "HistoriasInscritas" }, new { @class = "text-lg" })
+        }
+    }
+    @*@Html.ActionLink("Back to List", "MinhasCompeticoes")*@
+</p>

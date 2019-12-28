@@ -1,0 +1,72 @@
+﻿@model IEnumerable<KeepWriting.ViewModels.CompeticaoViewModel>
+
+<p>
+    @Html.ActionLink("Minhas competições", "MinhasCompeticoes")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.InicioInscriListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.FimInscriListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.InicioVotaListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdetails.FimVotaListar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PontoExperiencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Nome, "Detalhes", new { @id = item.IdCompeticao }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicioInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFimInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicioVota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFimVota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PontoExperiencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeUsuario)
+            </td>
+            <td>
+                @if (DateTime.Now < item.DataInicioInscri && DateTime.Now < item.DataFimInscri)
+                {
+                    @Html.RouteLink("Increver-se", "Inscrever", new { idCompeticao = item.IdCompeticao, action = "Inscrever" }, new { @class = "text-lg" })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
