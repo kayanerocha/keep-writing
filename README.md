@@ -4,4 +4,4 @@ O projeto Keep Writing tem como objetivo incentivar a leitura e a escrita de his
 
 ## Desenvolvimento
 
-Este projeto teve contribuição das integrantes Desireê, Gabriela, Giovanna e minha no período de fevereiro a dezembro de 2019 sendo versionado em um repositório no Subversion para a disciplina "Prática de Desenvolvimento de Sistemas" do curso Técnico em Informática Integrado ao Ensino Médio. Após a conclusão da disciplina (em dezembro de 2019) o projeto continuará a ser desenvolvido e versionado no GitHub.
+Este projeto teve contribuição de outras três desenvolvedoras e minha no período de fevereiro a dezembro de 2019 sendo versionado em outro repositório para a disciplina "Prática de Desenvolvimento de Sistemas" do curso Técnico em Informática Integrado ao Ensino Médio. Após a conclusão da disciplina (em dezembro de 2019) o projeto continuará a ser desenvolvido e versionado no GitHub.
